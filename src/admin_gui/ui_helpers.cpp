@@ -118,10 +118,10 @@ void applyThemeCss() {
             border-bottom: none;
         }
         notebook > header tab:checked {
-            background-color: #0078d4;
+            background-color: #004e8c;
             color: #ffffff;
             font-weight: bold;
-            border-color: #0078d4;
+            border-color: #004e8c;
         }
         notebook > stack {
             background-color: #141820;
@@ -132,10 +132,10 @@ void applyThemeCss() {
             color: #ffffff;
             border: 1px solid #2e3646;
             border-radius: 4px;
-            caret-color: #0078d4;
+            caret-color: #0063b1;
         }
         entry:focus, spinbutton:focus, textview:focus {
-            border-color: #0078d4;
+            border-color: #0063b1;
         }
         button {
             background-image: none;
@@ -148,16 +148,16 @@ void applyThemeCss() {
         }
         button:hover {
             background-color: #283040;
-            border-color: #0078d4;
+            border-color: #0063b1;
         }
         button.azure-primary {
-            background-color: #0078d4;
-            border-color: #0078d4;
+            background-color: #004e8c;
+            border-color: #004e8c;
             color: #ffffff;
         }
         button.azure-primary:hover {
-            background-color: #106ebe;
-            border-color: #2b88d8;
+            background-color: #0063b1;
+            border-color: #0078d4;
         }
         checkbutton {
             color: #ffffff;
@@ -168,8 +168,8 @@ void applyThemeCss() {
             color: #ffffff;
         }
         checkbutton:checked check {
-            background-color: #0078d4;
-            border-color: #0078d4;
+            background-color: #004e8c;
+            border-color: #004e8c;
         }
         combobox button {
             background-color: #1e2430;
