@@ -99,4 +99,9 @@ TEST_CASE("scanner deduplicates overlapping matches") {
     auto res = scanner.scan("key=AKIA1234567890ABCDEF");
     CHECK_EQ(res.findings.size(), 1u);
     CHECK_EQ(res.findings[0].ruleId, "SEC-AWS-KEY");
+
+    p.enableEntropy = false;
+    scanner.setPolicy(p);
+    auto noEnt = scanner.scan("Authorization: Bearer xK9mP2vL8nQ4zR7wT1yU5cB3eD6fG0hJ4kM8pQ2sV6xZ9");
+    CHECK_EQ(noEnt.findings.size(), 0u);
 }

@@ -10,6 +10,9 @@ TARGET_SUFFIXES = (
     "src/core/json.cpp",
     "src/core/validators.cpp",
     "src/core/policy.cpp",
+    "src/core/rule_registry.cpp",
+    "src/core/text_index.cpp",
+    "src/core/redactor.cpp",
     "src/core/scanner.cpp",
     "src/admin_gui/admin_controller.cpp",
 )

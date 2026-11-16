@@ -28,6 +28,7 @@ rm -rf "$OUT_DIR"
 mkdir -p "$OUT_DIR/bundle/wasm"
 
 cp web/index.html web/styles.css web/app.js web/interceptor.js web/policy.default.json "$OUT_DIR/bundle/"
+cp -r web/js "$OUT_DIR/bundle/"
 cp dist/wasm/data_guard.js dist/wasm/data_guard.wasm "$OUT_DIR/bundle/wasm/"
 cp deploy/enterprise/Dockerfile deploy/enterprise/docker-compose.yml deploy/enterprise/nginx.conf "$OUT_DIR/"
 

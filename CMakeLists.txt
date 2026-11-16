@@ -20,6 +20,9 @@ add_library(dataguard_core STATIC
     src/core/json.cpp
     src/core/validators.cpp
     src/core/policy.cpp
+    src/core/rule_registry.cpp
+    src/core/text_index.cpp
+    src/core/redactor.cpp
     src/core/scanner.cpp
 )
 target_include_directories(dataguard_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
@@ -33,7 +36,13 @@ target_include_directories(dataguard_admin_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR
 if(NOT EMSCRIPTEN AND BUILD_ADMIN_GUI)
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
-    add_executable(dataguard-admin src/admin_gui/main.cpp)
+    add_executable(dataguard-admin
+        src/admin_gui/main.cpp
+        src/admin_gui/ui_helpers.cpp
+        src/admin_gui/tab_policy.cpp
+        src/admin_gui/tab_rules.cpp
+        src/admin_gui/tab_test_bench.cpp
+    )
     target_include_directories(dataguard-admin PRIVATE ${GTK3_INCLUDE_DIRS})
     target_link_libraries(dataguard-admin PRIVATE dataguard_admin_lib ${GTK3_LIBRARIES})
     target_compile_options(dataguard-admin PRIVATE ${GTK3_CFLAGS_OTHER})

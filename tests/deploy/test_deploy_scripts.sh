@@ -10,6 +10,7 @@ test -f dist/test-enterprise/Dockerfile
 test -f dist/test-enterprise/docker-compose.yml
 test -f dist/test-enterprise/nginx.conf
 test -f dist/test-enterprise/bundle/index.html
+test -f dist/test-enterprise/bundle/js/wasm-client.js
 test -f dist/test-enterprise/bundle/policy.json
 test -f dist/test-enterprise/bundle/wasm/data_guard.wasm
 
