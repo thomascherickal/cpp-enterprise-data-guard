@@ -19,7 +19,7 @@ if [[ -z "$EMXX_BIN" ]]; then
 fi
 
 echo "[3/3] Compiling C++ scanner to WebAssembly ($EMXX_BIN)..."
-mkdir -p dist/wasm web/wasm
+mkdir -p dist/wasm web/wasm extension/wasm
 "$EMXX_BIN" -std=c++17 -O2 -Isrc \
   src/core/json.cpp \
   src/core/validators.cpp \
@@ -38,5 +38,6 @@ mkdir -p dist/wasm web/wasm
   -o dist/wasm/data_guard.js
 
 cp dist/wasm/data_guard.js dist/wasm/data_guard.wasm web/wasm/
+cp dist/wasm/data_guard.js dist/wasm/data_guard.wasm extension/wasm/
 echo "Build complete: build/native/dataguard-admin, dist/wasm/data_guard.{js,wasm}"
 

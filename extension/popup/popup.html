@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise Data Guard</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="header">
+    <div>
+      <h1>Enterprise Data Guard</h1>
+      <p id="versionLabel" class="muted">WASM Engine Loading…</p>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="enabledToggle" checked>
+      <span>Active</span>
+    </label>
+  </header>
+
+  <section class="stats-grid">
+    <div class="stat">
+      <span class="muted">Scans</span>
+      <strong id="statScans">0</strong>
+    </div>
+    <div class="stat">
+      <span class="muted">Blocked</span>
+      <strong id="statBlocked">0</strong>
+    </div>
+    <div class="stat">
+      <span class="muted">Secrets</span>
+      <strong id="statSecrets">0</strong>
+    </div>
+    <div class="stat">
+      <span class="muted">PII</span>
+      <strong id="statPii">0</strong>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Quick Pre-Flight Scan</h2>
+    <textarea id="quickInput" rows="4" spellcheck="false" placeholder="Paste text or code to scan &amp; redact…"></textarea>
+    <div class="row">
+      <button id="scanBtn" type="button" class="btn btn-primary">Scan &amp; Redact</button>
+      <button id="copyBtn" type="button" class="btn" disabled>Copy Safe</button>
+    </div>
+    <p id="scanVerdict" class="muted"></p>
+  </section>
+
+  <section class="card">
+    <h2>Policy Controls</h2>
+    <div class="checks">
+      <label><input type="checkbox" id="polSecrets"> Secrets &amp; Keys</label>
+      <label><input type="checkbox" id="polPii"> Personal Data (PII)</label>
+      <label><input type="checkbox" id="polEntropy"> High-Entropy Bearer</label>
+      <label><input type="checkbox" id="polIp"> IPv4 Addresses</label>
+    </div>
+    <div class="row">
+      <label class="btn file-btn">
+        Import policy.json
+        <input type="file" id="importPolicy" accept=".json,application/json" hidden>
+      </label>
+      <button id="resetPolicyBtn" type="button" class="btn">Reset</button>
+    </div>
+  </section>
+
+  <script src="popup.js"></script>
+</body>
+</html>
