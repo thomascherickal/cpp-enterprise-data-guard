@@ -33,6 +33,7 @@ mkdir -p dist/wasm web/wasm
   -s MODULARIZE=1 \
   -s EXPORT_NAME="createDataGuardModule" \
   -s ALLOW_MEMORY_GROWTH=1 \
+  -s DYNAMIC_EXECUTION=0 \
   -s ENVIRONMENT="web,worker,node" \
   -o dist/wasm/data_guard.js
 
