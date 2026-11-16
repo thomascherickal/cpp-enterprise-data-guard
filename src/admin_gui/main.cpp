@@ -62,6 +62,7 @@ void onResetClicked(GtkButton*, gpointer userData) {
 
 void activateGui(GtkApplication* gtkApp, gpointer userData) {
     auto* app = static_cast<AppWidgets*>(userData);
+    dataguard::admin::ui::applyThemeCss();
     app->window = gtk_application_window_new(gtkApp);
     gtk_window_set_title(GTK_WINDOW(app->window),
                          "Enterprise Data Guard — Admin Control Centre");
@@ -91,6 +92,7 @@ void activateGui(GtkApplication* gtkApp, gpointer userData) {
     GtkWidget* actionRow = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 8);
     GtkWidget* loadBtn = gtk_button_new_with_label("Load Policy JSON...");
     GtkWidget* saveBtn = gtk_button_new_with_label("Export Policy JSON...");
+    gtk_style_context_add_class(gtk_widget_get_style_context(saveBtn), "azure-primary");
     GtkWidget* resetBtn = gtk_button_new_with_label("Reset Defaults");
     g_signal_connect(loadBtn, "clicked", G_CALLBACK(onLoadPolicyClicked), app);
     g_signal_connect(saveBtn, "clicked", G_CALLBACK(onSavePolicyClicked), app);

@@ -29,6 +29,7 @@ GtkWidget* buildTestBenchTab(AppWidgets* app) {
                        "const awsKey = \"AKIA1234567890ABCDEF\";\n"
                        "Customer: alice@company.com, SSN: 123-45-6789\n");
     GtkWidget* runScanBtn = gtk_button_new_with_label("Run C++ Policy Scan");
+    gtk_style_context_add_class(gtk_widget_get_style_context(runScanBtn), "azure-primary");
     g_signal_connect(runScanBtn, "clicked", G_CALLBACK(onRunTestScanClicked), app);
     gtk_box_pack_start(GTK_BOX(box), runScanBtn, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(box), makeScrolledTextView(&app->testOutputView, FALSE), TRUE, TRUE,

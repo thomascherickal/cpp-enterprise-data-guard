@@ -40,6 +40,7 @@ GtkWidget* makeScrolledTextView(GtkWidget** outView, gboolean editable);
 
 void syncUiFromController(AppWidgets* app);
 void syncControllerFromUi(AppWidgets* app);
+void applyThemeCss();
 
 }  // namespace dataguard::admin::ui
 
