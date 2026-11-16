@@ -1,0 +1,7 @@
+build/
+dist/
+web/wasm/
+*.gcda
+*.gcno
+*.gcov
+.DS_Store

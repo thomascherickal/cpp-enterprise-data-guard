@@ -1,0 +1,20 @@
+{
+  "scenarios": [
+    {
+      "name": "Leaked AWS & Postgres Credentials",
+      "expectedBlocked": true,
+      "text": "const aws = 'AKIA1234567890ABCDEF';\nconst db = 'postgres://app:SecretPass123@prod.db:5432/users';"
+    },
+    {
+      "name": "Customer PII in Support Ticket",
+      "expectedBlocked": true,
+      "text": "Customer Jane Doe (jane.doe@corp.com), SSN 123-45-6789, Card 4532-0151-1283-0366."
+    },
+    {
+      "name": "Clean Engineering Prompt",
+      "expectedBlocked": false,
+      "text": "Summarize the time complexity of binary search in C++."
+    }
+  ]
+}
+
