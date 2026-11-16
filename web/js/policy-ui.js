@@ -18,7 +18,7 @@ export function syncPolicyControls(policy) {
   document.getElementById('polPii').checked = Boolean(policy.enablePii);
   document.getElementById('polEntropy').checked = Boolean(policy.enableEntropy);
   document.getElementById('polIp').checked = Boolean(policy.enableIpAddresses);
-  document.getElementById('polRedactionMode').value = policy.redactionMode || 'PLACEHOLDER';
+  document.getElementById('polRedactionMode').value = policy.redactionMode || 'REMOVE';
 }
 
 export function readPolicyControls(policy) {

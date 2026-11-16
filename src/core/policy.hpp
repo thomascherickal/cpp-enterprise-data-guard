@@ -23,7 +23,7 @@ struct Policy {
     bool enableIpAddresses = false;
     std::string minSeverity = "LOW";
     double entropyThreshold = 3.8;
-    std::string redactionMode = "PLACEHOLDER";  // PLACEHOLDER, MASK, REMOVE
+    std::string redactionMode = "REMOVE";  // PLACEHOLDER, MASK, REMOVE
     bool blockOnCritical = true;
     int maxFindingsBeforeBlock = 1;
     std::vector<std::string> allowlist;

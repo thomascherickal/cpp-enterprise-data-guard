@@ -41,7 +41,7 @@ assert.equal(errScan.blocked, true);
 assert.ok(errScan.error);
 
 const redacted = wasm.redactText('SSN 123-45-6789', defaultPolicy);
-assert.equal(redacted, 'SSN [REDACTED:PII-SSN]');
+assert.equal(redacted, 'SSN ');
 
 console.log('All WASM integration tests passed!');
 

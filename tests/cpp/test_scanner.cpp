@@ -40,8 +40,13 @@ TEST_CASE("scanner detects secrets and redacts") {
     CHECK_EQ(res.riskScore, 100);
     CHECK(res.findings.size() >= 10u);
     CHECK(res.redactedText.find("AKIA1234567890ABCDEF") == std::string::npos);
-    CHECK(res.redactedText.find("[REDACTED:SEC-AWS-KEY]") != std::string::npos);
     CHECK(res.toJson(-1).find("\"blocked\":true") != std::string::npos);
+
+    Policy placeholderPolicy = Policy::defaultEnterprise();
+    placeholderPolicy.redactionMode = "PLACEHOLDER";
+    Scanner placeholderScanner(placeholderPolicy);
+    CHECK_EQ(placeholderScanner.redact("aws=AKIA1234567890ABCDEF"),
+             "aws=[REDACTED:SEC-AWS-KEY]");
 }
 
 TEST_CASE("scanner detects pii and ipv4") {

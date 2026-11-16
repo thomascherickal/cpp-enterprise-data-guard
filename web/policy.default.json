@@ -7,7 +7,7 @@
   "enableIpAddresses": false,
   "minSeverity": "LOW",
   "entropyThreshold": 3.8,
-  "redactionMode": "PLACEHOLDER",
+  "redactionMode": "REMOVE",
   "blockOnCritical": true,
   "maxFindingsBeforeBlock": 1,
   "allowlist": [
