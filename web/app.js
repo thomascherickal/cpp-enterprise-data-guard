@@ -120,3 +120,18 @@ async function init() {
 }
 
 init();
+
+(function () {
+  var btn = document.getElementById("themeToggleBtn");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    var isLight = document.documentElement.getAttribute("data-theme") !== "light";
+    if (isLight) {
+      document.documentElement.setAttribute("data-theme", "light");
+      btn.textContent = "Dark Mode";
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+      btn.textContent = "Light Mode";
+    }
+  });
+})();

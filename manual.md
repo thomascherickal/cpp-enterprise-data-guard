@@ -132,3 +132,4 @@ Runs C++ unit tests (`ctest`), verifies **100.00% `gcov` line coverage** across 
 - **WASM fails to load in browser**: Ensure the HTTP server serves `.wasm` with MIME type `application/wasm` (handled automatically by `deploy/enterprise/nginx.conf` and `deploy/local/local-server.py`). Opening `index.html` via `file://` is blocked by browser `fetch`/WASM origin policies; always serve over HTTP.
 - **`em++ not found` during build**: Ensure Emscripten SDK is installed at `~/emsdk/upstream/emscripten/em++` or export `EMXX=/path/to/em++`.
 - **False positives on example keys**: Add the safe example token or domain to `allowlist` in the Admin Control Centre and re-export `policy.json`.
+

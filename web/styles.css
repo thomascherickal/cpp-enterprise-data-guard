@@ -16,6 +16,22 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: #eef2f7;
+  --surface: #ffffff;
+  --surface-alt: #e4eaf2;
+  --border: #cbd5e1;
+  --text: #162a45;
+  --muted: #475569;
+  --accent: #1e40af;
+  --accent-strong: #1e3a8a;
+  --safe: #15803d;
+  --warn: #b45309;
+  --danger: #b91c1c;
+  --critical: #991b1b;
+}
+
 * {
   box-sizing: border-box;
 }

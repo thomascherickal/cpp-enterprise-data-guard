@@ -27,3 +27,4 @@ This populates `extension/wasm/data_guard.{js,wasm}` and creates `dist/enterpris
 - **Automatic Prompt Interception**: Intercepts `Enter` submissions on AI chat inputs and shows a blocking dialog with detected secrets/PII and a one-click **Replace with Safe Redacted Prompt** button.
 - **Paste Warning Toast**: Alerts immediately when secrets or PII are pasted into an AI prompt box.
 - **Extension Popup**: Toggle protection on/off, view scan/block statistics, run quick pre-flight scans, toggle policy categories, or import an admin-exported `policy.json`.
+

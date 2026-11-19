@@ -87,3 +87,4 @@ cp dist/local/bin/dataguard-admin ~/.local/bin/
 - **Run the project**: See [scripts/run.sh](scripts/run.sh) (`./scripts/run.sh` for Local Web Dashboard, `--gui` for Admin Control Centre, `--mode=demo` for Demo).
 - **Deploy to Enterprise / Local / Demo**: See [deployment.md](deployment.md).
 - **Operational Manual**: See [manual.md](manual.md).
+

@@ -4,7 +4,7 @@ The **Admin Control Centre** (`dataguard-admin`) is a native C++ GTK+ 3 desktop 
 
 ## Launching the GUI
 
-```bash
+```bashbash 
 ./build/native/dataguard-admin
 ```
 
