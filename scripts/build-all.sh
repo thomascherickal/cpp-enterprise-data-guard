@@ -21,12 +21,19 @@ fi
 echo "[3/3] Compiling C++ scanner to WebAssembly ($EMXX_BIN)..."
 mkdir -p dist/wasm web/wasm extension/wasm
 "$EMXX_BIN" -std=c++17 -O2 -Isrc \
-  src/core/json.cpp \
-  src/core/validators.cpp \
-  src/core/policy.cpp \
+  src/core/json_value.cpp \
+  src/core/json_dump.cpp \
+  src/core/json_parser.cpp \
+  src/core/json_parser_tokens.cpp \
+  src/core/validators_checksum.cpp \
+  src/core/validators_entropy.cpp \
+  src/core/policy_io.cpp \
+  src/core/policy_validate.cpp \
   src/core/rule_registry.cpp \
   src/core/text_index.cpp \
   src/core/redactor.cpp \
+  src/core/scanner_rules.cpp \
+  src/core/scanner_scoring.cpp \
   src/core/scanner.cpp \
   src/wasm/wasm_bridge.cpp \
   -lembind \

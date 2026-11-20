@@ -1,35 +1,22 @@
 import { renderScanVerdict } from './js/findings-view.js';
 import { loadInitialPolicy, readPolicyControls, syncPolicyControls } from './js/policy-ui.js';
+import { SAMPLES, wireInterceptorDialog } from './js/samples-dialog.js';
 import { loadStats, recordScanStats, saveStats } from './js/stats-store.js';
 import { initWasmClient } from './js/wasm-client.js';
 
-const SAMPLES = {
-  safe: `Explain how WebAssembly linear memory works in C++ Emscripten builds.\nKeep the summary under 5 bullet points.`,
-  secrets: `// Accidentally pasted production config!\nconst AWS_ACCESS_KEY_ID = "AKIA9876543210ZYXWVU";\nconst DATABASE_URL = "postgres://admin:SuperSecretPass99@db.prod.internal:5432/customers";\nconst OPENAI_KEY = "sk-proj-abcdefghijklmnopqrstuvwxyz123456";`,
-  pii: `Please draft a polite follow-up email for this customer:\nName: Jordan Vance\nEmail: jordan.vance@acme-corp.com\nSSN: 123-45-6789\nCard: 4532-0151-1283-0366`
-};
-
-const state = {
-  wasm: null,
-  policy: null,
-  stats: loadStats(),
-  debounceTimer: null
-};
+const state = { wasm: null, policy: null, stats: loadStats(), debounceTimer: null };
 
 function runScan(countInStats = true) {
   if (!state.wasm || !state.policy) return;
   const input = document.getElementById('promptInput').value;
   const result = state.wasm.scanText(input, state.policy);
   renderScanVerdict(input, result);
-  if (countInStats && input.trim()) {
-    recordScanStats(state.stats, result.findings);
-  }
+  if (countInStats && input.trim()) recordScanStats(state.stats, result.findings);
 }
 
 async function init() {
   saveStats(state.stats);
   const statusBadge = document.getElementById('wasmStatusBadge');
-
   try {
     state.wasm = await initWasmClient();
     state.policy = await loadInitialPolicy(state.wasm);
@@ -51,7 +38,6 @@ async function init() {
   });
 
   document.getElementById('scanNowBtn').addEventListener('click', () => runScan(true));
-
   document.getElementById('clearBtn').addEventListener('click', () => {
     promptEl.value = '';
     runScan(false);
@@ -65,14 +51,11 @@ async function init() {
   });
 
   document.getElementById('copyRedactedBtn').addEventListener('click', async () => {
-    const out = document.getElementById('redactedOutput').value;
-    await navigator.clipboard.writeText(out);
+    await navigator.clipboard.writeText(document.getElementById('redactedOutput').value);
     const btn = document.getElementById('copyRedactedBtn');
     const prev = btn.textContent;
     btn.textContent = 'Copied!';
-    setTimeout(() => {
-      btn.textContent = prev;
-    }, 1500);
+    setTimeout(() => { btn.textContent = prev; }, 1500);
   });
 
   for (const id of ['polSecrets', 'polPii', 'polEntropy', 'polIp', 'polRedactionMode']) {
@@ -102,36 +85,7 @@ async function init() {
     runScan(false);
   });
 
-  const dialog = document.getElementById('interceptorDialog');
-  document.getElementById('openInterceptorBtn').addEventListener('click', async () => {
-    try {
-      const resp = await fetch('./interceptor.js');
-      document.getElementById('interceptorSnippet').textContent = await resp.text();
-    } catch {
-      document.getElementById('interceptorSnippet').textContent = '// See web/interceptor.js';
-    }
-    dialog.showModal();
-  });
-  document.getElementById('closeDialogBtn').addEventListener('click', () => dialog.close());
-  document.getElementById('copyInterceptorBtn').addEventListener('click', async () => {
-    const code = document.getElementById('interceptorSnippet').textContent;
-    await navigator.clipboard.writeText(code);
-  });
+  wireInterceptorDialog();
 }
 
 init();
-
-(function () {
-  var btn = document.getElementById("themeToggleBtn");
-  if (!btn) return;
-  btn.addEventListener("click", function () {
-    var isLight = document.documentElement.getAttribute("data-theme") !== "light";
-    if (isLight) {
-      document.documentElement.setAttribute("data-theme", "light");
-      btn.textContent = "Dark Mode";
-    } else {
-      document.documentElement.removeAttribute("data-theme");
-      btn.textContent = "Light Mode";
-    }
-  });
-})();

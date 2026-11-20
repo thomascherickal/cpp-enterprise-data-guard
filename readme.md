@@ -42,3 +42,30 @@ Developers and employees routinely paste stack traces, configuration files, data
 - [Security Model](docs/security-model.md)
 - [Testing and Coverage](docs/testing-and-coverage.md)
 
+## Visual Architecture
+
+```mermaid
+flowchart LR
+    Core["C++17 Core Engine"] --> Wasm["WebAssembly Module"]
+    Core --> Admin["GTK3 Admin GUI"]
+    Wasm --> Web["User Web Dashboard"]
+    Wasm --> Ext["Chrome/Edge Extension"]
+    style Core fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Wasm fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Admin fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Web fill:#065f46,stroke:#34d399,color:#ffffff
+    style Ext fill:#065f46,stroke:#34d399,color:#ffffff
+```
+
+```mermaid
+flowchart LR
+    Build["build-all.sh"] --> Test["run-tests.sh"]
+    Test --> Local["deploy-local.sh"]
+    Test --> Demo["deploy-demo.sh"]
+    Test --> Ent["deploy-enterprise.sh"]
+    style Build fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Test fill:#065f46,stroke:#34d399,color:#ffffff
+    style Local fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Demo fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Ent fill:#0063b1,stroke:#60a5fa,color:#ffffff
+```

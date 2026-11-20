@@ -23,3 +23,17 @@ Click **Export Policy JSON...** in the GUI, or use the headless CLI for CI/CD au
 ./build/native/dataguard-admin --headless --policy policy.json --scan "text to check"
 ```
 
+## Visual Architecture
+
+```mermaid
+flowchart LR
+    Tab1["Policy Tab"] --> Ctrl["AdminController"]
+    Tab2["Rules Tab"] --> Ctrl
+    Tab3["Test Bench"] --> Ctrl
+    Ctrl --> Out["policy.json"]
+    style Tab1 fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Tab2 fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Tab3 fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Ctrl fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Out fill:#065f46,stroke:#34d399,color:#ffffff
+```

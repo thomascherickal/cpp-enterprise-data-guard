@@ -17,18 +17,26 @@ if(ENABLE_COVERAGE AND NOT EMSCRIPTEN)
 endif()
 
 add_library(dataguard_core STATIC
-    src/core/json.cpp
-    src/core/validators.cpp
-    src/core/policy.cpp
+    src/core/json_value.cpp
+    src/core/json_dump.cpp
+    src/core/json_parser.cpp
+    src/core/json_parser_tokens.cpp
+    src/core/validators_checksum.cpp
+    src/core/validators_entropy.cpp
+    src/core/policy_io.cpp
+    src/core/policy_validate.cpp
     src/core/rule_registry.cpp
     src/core/text_index.cpp
     src/core/redactor.cpp
+    src/core/scanner_rules.cpp
+    src/core/scanner_scoring.cpp
     src/core/scanner.cpp
 )
 target_include_directories(dataguard_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 add_library(dataguard_admin_lib STATIC
     src/admin_gui/admin_controller.cpp
+    src/admin_gui/admin_cli.cpp
 )
 target_link_libraries(dataguard_admin_lib PUBLIC dataguard_core)
 target_include_directories(dataguard_admin_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
@@ -38,7 +46,9 @@ if(NOT EMSCRIPTEN AND BUILD_ADMIN_GUI)
     pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
     add_executable(dataguard-admin
         src/admin_gui/main.cpp
+        src/admin_gui/actions.cpp
         src/admin_gui/ui_helpers.cpp
+        src/admin_gui/ui_theme.cpp
         src/admin_gui/tab_policy.cpp
         src/admin_gui/tab_rules.cpp
         src/admin_gui/tab_test_bench.cpp
@@ -53,12 +63,14 @@ if(BUILD_TESTING AND NOT EMSCRIPTEN)
     add_executable(dataguard_tests
         tests/cpp/test_main.cpp
         tests/cpp/test_json.cpp
+        tests/cpp/test_json_errors.cpp
         tests/cpp/test_validators.cpp
         tests/cpp/test_policy.cpp
         tests/cpp/test_scanner.cpp
+        tests/cpp/test_scanner_policy.cpp
         tests/cpp/test_admin_controller.cpp
+        tests/cpp/test_admin_cli.cpp
     )
     target_link_libraries(dataguard_tests PRIVATE dataguard_admin_lib)
     add_test(NAME dataguard_unit_tests COMMAND dataguard_tests)
 endif()
-

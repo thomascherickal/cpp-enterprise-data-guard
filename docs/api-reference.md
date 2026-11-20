@@ -48,3 +48,15 @@ Returns the scanner engine version (`"1.0.0"`).
 - `dataguard::Policy::fromJson(const std::string& json, std::string& err) -> Policy`
 - `dataguard::Policy::validate(std::vector<std::string>& errors) const -> bool`
 
+## Visual Architecture
+
+```mermaid
+flowchart LR
+    JS["JavaScript Caller"] --> Bridge["embind wasm_bridge.cpp"]
+    Bridge --> Core["dataguard::Scanner"]
+    Core --> JSON["JSON ScanResult"]
+    style JS fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Bridge fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Core fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style JSON fill:#065f46,stroke:#34d399,color:#ffffff
+```

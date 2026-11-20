@@ -12,3 +12,15 @@
 - **Secrets (`SECRET`)**: AWS Access Keys, GitHub PATs, OpenAI Keys, Anthropic Keys, Google API Keys, Stripe Live Keys, Slack Tokens, PEM Private Keys, JWTs, Database URIs with credentials, Hardcoded Password/API-Key Assignments, High-Entropy Bearer Tokens.
 - **Personal Data (`PII`)**: Luhn-validated Payment Card Numbers, US SSNs, Mod-97-validated IBANs, Email Addresses, Phone Numbers, and optional IPv4 Addresses.
 
+## Visual Architecture
+
+```mermaid
+flowchart LR
+    Prompt["User Prompt"] --> Mem["WASM Linear Memory"]
+    Mem --> Mask["Masked Findings Only"]
+    Mem --> CSP["Strict CSP & No innerHTML"]
+    style Prompt fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Mem fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Mask fill:#065f46,stroke:#34d399,color:#ffffff
+    style CSP fill:#0063b1,stroke:#60a5fa,color:#ffffff
+```

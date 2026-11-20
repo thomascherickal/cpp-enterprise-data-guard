@@ -1,27 +1,9 @@
 #include "core/validators.hpp"
 
-#include <array>
 #include <cctype>
-#include <cmath>
 #include <string>
 
 namespace dataguard::validators {
-
-double shannonEntropy(std::string_view s) {
-    if (s.empty()) return 0.0;
-    std::array<std::size_t, 256> counts{};
-    for (unsigned char c : s) {
-        counts[c]++;
-    }
-    double entropy = 0.0;
-    const double len = static_cast<double>(s.size());
-    for (std::size_t count : counts) {
-        if (count == 0) continue;
-        double p = static_cast<double>(count) / len;
-        entropy -= p * std::log2(p);
-    }
-    return entropy;
-}
 
 bool isValidLuhn(std::string_view input) {
     std::string digits;
@@ -35,10 +17,7 @@ bool isValidLuhn(std::string_view input) {
 
     bool allSame = true;
     for (std::size_t i = 1; i < digits.size(); ++i) {
-        if (digits[i] != digits[0]) {
-            allSame = false;
-            break;
-        }
+        if (digits[i] != digits[0]) { allSame = false; break; }
     }
     if (allSame) return false;
 
@@ -78,16 +57,14 @@ bool isValidIban(std::string_view input) {
         if (std::isdigit(static_cast<unsigned char>(c))) {
             mod = (mod * 10 + (c - '0')) % 97;
         } else {
-            int val = (c - 'A') + 10;
-            mod = (mod * 100 + val) % 97;
+            mod = (mod * 100 + (c - 'A') + 10) % 97;
         }
     }
     return mod == 1;
 }
 
 bool isValidSsn(std::string_view input) {
-    if (input.size() != 11) return false;
-    if (input[3] != '-' || input[6] != '-') return false;
+    if (input.size() != 11 || input[3] != '-' || input[6] != '-') return false;
     for (std::size_t i = 0; i < input.size(); ++i) {
         if (i == 3 || i == 6) continue;
         if (!std::isdigit(static_cast<unsigned char>(input[i]))) return false;
@@ -96,20 +73,7 @@ bool isValidSsn(std::string_view input) {
     int group = (input[4] - '0') * 10 + (input[5] - '0');
     int serial = (input[7] - '0') * 1000 + (input[8] - '0') * 100 +
                  (input[9] - '0') * 10 + (input[10] - '0');
-    if (area == 0 || area == 666 || area >= 900) return false;
-    if (group == 0 || serial == 0) return false;
-    return true;
-}
-
-std::string maskSecret(std::string_view value, std::size_t keepStart, std::size_t keepEnd) {
-    if (value.size() <= keepStart + keepEnd + 2) {
-        return "****";
-    }
-    std::string out;
-    out.append(value.substr(0, keepStart));
-    out.append("****");
-    out.append(value.substr(value.size() - keepEnd));
-    return out;
+    return area != 0 && area != 666 && area < 900 && group != 0 && serial != 0;
 }
 
 }  // namespace dataguard::validators

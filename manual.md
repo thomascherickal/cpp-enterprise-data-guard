@@ -133,3 +133,81 @@ Runs C++ unit tests (`ctest`), verifies **100.00% `gcov` line coverage** across 
 - **`em++ not found` during build**: Ensure Emscripten SDK is installed at `~/emsdk/upstream/emscripten/em++` or export `EMXX=/path/to/em++`.
 - **False positives on example keys**: Add the safe example token or domain to `allowlist` in the Admin Control Centre and re-export `policy.json`.
 
+## Visual Architecture
+
+```mermaid
+flowchart LR
+    Input["Prompt / Code"] --> Index["TextIndex"]
+    Index --> Rules["Secret & PII Rules"]
+    Rules --> Val["Luhn / IBAN / SSN / Entropy"]
+    Val --> Redact["Redactor"]
+    style Input fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Index fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Rules fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Val fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Redact fill:#065f46,stroke:#34d399,color:#ffffff
+```
+
+```mermaid
+flowchart LR
+    Raw["Raw Findings"] --> Sort["Sort by Offset & Severity"]
+    Sort --> Dedup["Drop Overlaps"]
+    Dedup --> Score["Risk Score 0-100"]
+    style Raw fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Sort fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Dedup fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Score fill:#065f46,stroke:#34d399,color:#ffffff
+```
+
+```mermaid
+flowchart LR
+    Mode["redactionMode"] --> Rem["REMOVE"]
+    Mode --> Mask["MASK"]
+    Mode --> Place["PLACEHOLDER"]
+    style Mode fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Rem fill:#065f46,stroke:#34d399,color:#ffffff
+    style Mask fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Place fill:#1e2430,stroke:#94a3b8,color:#ffffff
+```
+
+```mermaid
+flowchart LR
+    UI["Web Dashboard"] --> Client["wasm-client.js"]
+    Client --> Wasm["data_guard.wasm"]
+    Wasm --> View["findings-view.js"]
+    style UI fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Client fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Wasm fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style View fill:#065f46,stroke:#34d399,color:#ffffff
+```
+
+```mermaid
+flowchart LR
+    Admin["GTK3 Admin GUI"] --> Ctrl["AdminController"]
+    Ctrl --> Export["Export policy.json"]
+    Export --> Users["Browser Clients"]
+    style Admin fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Ctrl fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Export fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Users fill:#065f46,stroke:#34d399,color:#ffffff
+```
+
+```mermaid
+flowchart LR
+    CLI["dataguard-admin --headless"] --> OK["Exit 0: Allowed"]
+    CLI --> Blk["Exit 3: Blocked"]
+    CLI --> Err["Exit 1/2: Error"]
+    style CLI fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style OK fill:#065f46,stroke:#34d399,color:#ffffff
+    style Blk fill:#991b1b,stroke:#f87171,color:#ffffff
+    style Err fill:#1e2430,stroke:#94a3b8,color:#ffffff
+```
+
+```mermaid
+flowchart LR
+    Rollout["Update policy.json"] --> NoCache["Cache-Control: no-store"]
+    NoCache --> Reload["Next Browser Load"]
+    style Rollout fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style NoCache fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Reload fill:#065f46,stroke:#34d399,color:#ffffff
+```

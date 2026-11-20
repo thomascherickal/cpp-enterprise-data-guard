@@ -77,3 +77,39 @@ Options:
    ./build/native/dataguard-admin --headless --export-policy dist/enterprise/bundle/policy.json
    ```
 
+## Visual Architecture
+
+```mermaid
+flowchart LR
+    Src["C++ & Web Source"] --> Build["build-all.sh"]
+    Build --> Local["Local :8080"]
+    Build --> Demo["Demo :8090"]
+    Build --> Ent["Enterprise Docker"]
+    style Src fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Build fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Local fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Demo fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Ent fill:#065f46,stroke:#34d399,color:#ffffff
+```
+
+```mermaid
+flowchart TD
+    Admin["dataguard-admin"] --> Policy["policy.json"]
+    Policy --> Nginx["Nginx Read-Only Container"]
+    Wasm["data_guard.wasm"] --> Nginx
+    Nginx --> Browser["User Browser"]
+    style Admin fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Policy fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Wasm fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Nginx fill:#065f46,stroke:#34d399,color:#ffffff
+    style Browser fill:#1e2430,stroke:#60a5fa,color:#ffffff
+```
+
+```mermaid
+flowchart LR
+    LocalSrv["local-server.py"] --> Mime["application/wasm"]
+    Mime --> Dash["Web Dashboard"]
+    style LocalSrv fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Mime fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Dash fill:#065f46,stroke:#34d399,color:#ffffff
+```

@@ -31,7 +31,7 @@ rm -rf "$OUT_DIR"
 mkdir -p "$OUT_DIR/web/wasm"
 
 cp web/index.html web/styles.css web/app.js web/interceptor.js web/policy.default.json "$OUT_DIR/web/"
-cp -r web/js web/assets "$OUT_DIR/web/"
+cp -r web/js web/css web/assets "$OUT_DIR/web/"
 cp dist/wasm/data_guard.js dist/wasm/data_guard.wasm "$OUT_DIR/web/wasm/"
 cp deploy/demo/demo-scenarios.json "$OUT_DIR/web/demo-scenarios.json"
 ./build/native/dataguard-admin --headless --export-policy "$OUT_DIR/web/policy.json"

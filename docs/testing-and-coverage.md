@@ -22,3 +22,15 @@ This executes three verification stages:
 3. **Deployment Script Smoke Tests (`tests/deploy/test_deploy_scripts.sh`)**:
    - Verifies Enterprise, Local, and Demo deployment scripts produce all required artifacts.
 
+## Visual Architecture
+
+```mermaid
+flowchart LR
+    Unit["C++ Unit + 100% gcov"] --> Wasm["WASM Integration"]
+    Wasm --> Sec["Security & Perf"]
+    Sec --> E2E["E2E & Deploy Smoke"]
+    style Unit fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Wasm fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Sec fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style E2E fill:#065f46,stroke:#34d399,color:#ffffff
+```

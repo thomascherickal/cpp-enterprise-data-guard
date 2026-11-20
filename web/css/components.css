@@ -1,0 +1,70 @@
+textarea {
+  width: 100%;
+  background: var(--surface-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  resize: vertical;
+}
+
+textarea:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sample-buttons { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.btn {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--surface-alt);
+  color: var(--text);
+}
+
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary { background: var(--accent-strong); border-color: var(--accent-strong); color: #ffffff; }
+.btn-secondary { background: var(--surface-alt); }
+.btn-ghost { background: transparent; }
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.badge-neutral { background: #334155; color: #f8fafc; }
+.badge-safe { background: rgba(34, 197, 94, 0.2); color: var(--safe); }
+.badge-warn { background: rgba(245, 158, 11, 0.2); color: var(--warn); }
+.badge-danger { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
+
+.risk-meter-wrap { display: flex; flex-direction: column; gap: 0.35rem; }
+.risk-meter-labels { display: flex; justify-content: space-between; font-size: 0.85rem; }
+progress { width: 100%; height: 10px; border-radius: 999px; }
+.field-label { font-size: 0.85rem; font-weight: 600; }
+.muted { color: var(--muted); font-size: 0.85rem; }
+
+.checkbox-inline,
+.select-inline { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.875rem; }
+.policy-controls { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: center; }
+
+select {
+  background: var(--surface-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.3rem 0.5rem;
+}
+

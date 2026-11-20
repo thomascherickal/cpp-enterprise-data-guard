@@ -32,7 +32,7 @@ mkdir -p "$OUT_DIR/bin" "$OUT_DIR/web/wasm"
 
 cp build/native/dataguard-admin "$OUT_DIR/bin/"
 cp web/index.html web/styles.css web/app.js web/interceptor.js web/policy.default.json "$OUT_DIR/web/"
-cp -r web/js web/assets "$OUT_DIR/web/"
+cp -r web/js web/css web/assets "$OUT_DIR/web/"
 cp dist/wasm/data_guard.js dist/wasm/data_guard.wasm "$OUT_DIR/web/wasm/"
 ./build/native/dataguard-admin --headless --export-policy "$OUT_DIR/web/policy.json"
 

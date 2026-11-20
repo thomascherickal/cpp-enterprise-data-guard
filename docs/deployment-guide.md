@@ -34,3 +34,26 @@ Builds the project, runs a live CLI demonstration scan, packages `demo-scenarios
 ./scripts/deploy-demo.sh --no-serve     # Prepare demo and run CLI scan only
 ```
 
+## Visual Architecture
+
+```mermaid
+flowchart LR
+    Ent["deploy-enterprise.sh"] --> Docker["Nginx + Docker"]
+    Loc["deploy-local.sh"] --> Py["local-server.py :8080"]
+    Demo["deploy-demo.sh"] --> DemoSrv["Demo :8090"]
+    style Ent fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Docker fill:#065f46,stroke:#34d399,color:#ffffff
+    style Loc fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Py fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Demo fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style DemoSrv fill:#1e2430,stroke:#94a3b8,color:#ffffff
+```
+
+```mermaid
+flowchart LR
+    Bundle["Static Web + WASM"] --> CSP["Strict CSP Headers"]
+    CSP --> Browser["Zero-Trust Client"]
+    style Bundle fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style CSP fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Browser fill:#065f46,stroke:#34d399,color:#ffffff
+```

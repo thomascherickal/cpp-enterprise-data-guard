@@ -88,3 +88,25 @@ cp dist/local/bin/dataguard-admin ~/.local/bin/
 - **Deploy to Enterprise / Local / Demo**: See [deployment.md](deployment.md).
 - **Operational Manual**: See [manual.md](manual.md).
 
+## Visual Architecture
+
+```mermaid
+flowchart LR
+    Deps["g++ / CMake / GTK3 / emsdk"] --> Clone["git clone"]
+    Clone --> Build["build-all.sh"]
+    Build --> Verify["run.sh --test"]
+    style Deps fill:#1e2430,stroke:#94a3b8,color:#ffffff
+    style Clone fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Build fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Verify fill:#065f46,stroke:#34d399,color:#ffffff
+```
+
+```mermaid
+flowchart LR
+    Native["build/native/dataguard-admin"] --> Bin["~/.local/bin"]
+    Wasm["dist/wasm/data_guard.wasm"] --> Web["dist/local/web"]
+    style Native fill:#004e8c,stroke:#38bdf8,color:#ffffff
+    style Bin fill:#065f46,stroke:#34d399,color:#ffffff
+    style Wasm fill:#0063b1,stroke:#60a5fa,color:#ffffff
+    style Web fill:#1e2430,stroke:#94a3b8,color:#ffffff
+```
