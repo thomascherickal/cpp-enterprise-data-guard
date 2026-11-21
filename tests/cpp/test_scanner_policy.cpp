@@ -11,6 +11,7 @@ TEST_CASE("scanner detects pii and ipv4") {
 
   std::string input = "Card: 4532-0151-1283-0366\n"
                       "SSN: 123-45-6789\n"
+                      "InvalidSSN: 000-45-6789\n"
                       "IBAN: DE89370400440532013000\n"
                       "Email: jane.doe@company.com\n"
                       "Phone: (555) 234-5678\n"

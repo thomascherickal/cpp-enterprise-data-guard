@@ -1,6 +1,6 @@
 # System Profile (CPU & GPU)
 
-Updated: 2026-11-20 22:48:51 UTC
+Updated: 2026-11-21 07:19:33 UTC
 
 ```mermaid
 flowchart LR
@@ -17,5 +17,5 @@ flowchart LR
 | :--- | :--- |
 | CPU Model | 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz |
 | Logical Cores | 8 |
-| Memory Used / Total | 9.0Gi / 15Gi |
+| Memory Used / Total | 6.2Gi / 15Gi |
 | GPU Telemetry | NVIDIA GeForce MX330, 0 %, 5 MiB, 2048 MiB |

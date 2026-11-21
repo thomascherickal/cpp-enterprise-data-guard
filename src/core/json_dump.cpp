@@ -96,4 +96,3 @@ void Value::dumpImpl(std::string& out, int indent, int depth) const {
 }
 
 }  // namespace dataguard::json
-

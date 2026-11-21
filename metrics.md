@@ -1,6 +1,6 @@
 # Project Metrics
 
-Updated: 2026-11-20 22:48:51 UTC
+Updated: 2026-11-21 07:19:33 UTC
 
 ```mermaid
 flowchart LR
@@ -17,12 +17,12 @@ flowchart LR
 
 | Group | Files | Lines |
 | :--- | ---: | ---: |
-| C++ Source (.cpp/.hpp) | 37 | 2059 |
+| C++ Source (.cpp/.hpp) | 37 | 2077 |
 | JavaScript / WASM Glue (.js/.mjs) | 12 | 680 |
 | CSS & HTML (.css/.html/.svg) | 12 | 659 |
 | Scripts & Build (.sh/.py/CMake/Docker/Conf) | 17 | 825 |
 | JSON Data & Manifests (.json) | 3 | 91 |
 | Documentation (.md) | 19 | 1167 |
-| C++ Unit Tests | 10 | 552 |
+| C++ Unit Tests | 10 | 568 |
 | WASM / Perf / Security / E2E / Deploy Tests | 5 | 152 |
-| **Total Project** | **115** | **6185** |
+| **Total Project** | **115** | **6219** |
