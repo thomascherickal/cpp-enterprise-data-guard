@@ -3,7 +3,7 @@
 namespace dataguard::admin::ui {
 
 void applyThemeCss() {
-    static const char* kThemeCss = R"CSS(
+  static const char *kThemeCss = R"CSS(
         window, .background { background-color: #0b0e14; color: #ffffff; }
         label, checkbutton { color: #ffffff; }
         notebook { background-color: #141820; border: 1px solid #2e3646; }
@@ -34,15 +34,15 @@ void applyThemeCss() {
         combobox button { background-color: #1e2430; color: #ffffff; }
     )CSS";
 
-    GtkCssProvider* provider = gtk_css_provider_new();
-    gtk_css_provider_load_from_data(provider, kThemeCss, -1, nullptr);
-    GdkScreen* screen = gdk_screen_get_default();
-    if (screen != nullptr) {
-        gtk_style_context_add_provider_for_screen(
-            screen, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-    }
-    g_object_unref(provider);
+  GtkCssProvider *provider = gtk_css_provider_new();
+  gtk_css_provider_load_from_data(provider, kThemeCss, -1, nullptr);
+  GdkScreen *screen = gdk_screen_get_default();
+  if (screen != nullptr) {
+    gtk_style_context_add_provider_for_screen(
+        screen, GTK_STYLE_PROVIDER(provider),
+        GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+  }
+  g_object_unref(provider);
 }
 
-}  // namespace dataguard::admin::ui
-
+} // namespace dataguard::admin::ui
